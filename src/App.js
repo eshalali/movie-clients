@@ -12,6 +12,8 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import ShowMovie from './components/movies/ShowMovie'
+import CreateMovie from './components/movies/CreateMovie'
 
 const App = () => {
 
@@ -68,6 +70,18 @@ const App = () => {
                 <ChangePassword msgAlert={msgAlert} user={user} />
               </RequireAuth>}
           />
+		  <Route
+					path="/movies/:id"
+					element={ <ShowMovie user={ user } msgAlert={ msgAlert } />}
+				/>
+				<Route
+					path="/addMovie"
+					element={
+						<RequireAuth user={ user }>
+							<CreateMovie msgAlert={msgAlert} user={user}/>
+						</RequireAuth>  
+					}
+				/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
